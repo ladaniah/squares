@@ -1,5 +1,20 @@
-let squareArea = document.querySelector("#squarearea");
-let squareCount = parseInt(Math.random()*21)+30;
+let squareArea;
+
+window.onload = function(){
+    squareArea = document.querySelector("#squarearea");
+    let squareCount = parseInt(Math.random()*21)+30;
+
+    for (let i = 0; i < squareCount; i++){
+        addSquare();
+    }
+
+    let addButton = document.querySelector("#add");
+    addButton.addEventListener("click", addSquare);
+
+    let changeButton = document.querySelector("#change");
+    changeButton.addEventListener("click", changeColors);
+}
+
 function addSquare(){
     let square = document.createElement("div");
     square.className = "square";
@@ -8,11 +23,13 @@ function addSquare(){
     square.style.left =parseInt(Math.random()*(700-50))+"px";
     squareArea.append(square);
 }
-for (let i = 0; i < squareCount; i++){
-    addSquare();
+
+function changeColors(){
+    let squares = document.querySelectorAll(".square");
+    for (let i = 0; i < squares.length; i++){
+        squares[i].style.backgroundColor = getRandomColor();
+    }
 }
-let addButton = document.querySelector("#add");
-addButton.addEventListener("click", addSquare);
 
 function getRandomColor(){
     let possibleLetters ="0123456789ABCDEF";
@@ -23,12 +40,3 @@ function getRandomColor(){
     }
     return color;
 }
-function changeColors(){
-    let squares = document.querySelectorAll(".square");
-    for (let i = 0; i < squares.length; i++){
-        squares[i].style.backgroundColor = getRandomColor();
-    }
-}
-let changeButton = document.querySelector("#change");
-changeButton.addEventListener("click", changeColors);
-
