@@ -23,3 +23,12 @@ function getRandomColor(){
     }
     return color;
 }
+function changeColors(){
+    let squares = document.querySelectorAll(".square");
+    for (let i = 0; i < squares.length; i++){
+        squares[i].style.backgroundColor = getRandomColor();
+    }
+}
+let changeButton = document.querySelector("#change");
+changeButton.addEventListener("click", changeColors);
+
